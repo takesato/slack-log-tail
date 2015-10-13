@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "slack/log/tail"
+
+token = ENV['SLACK_TOKEN']
+Slack::Log::Tail::Client.new(token).start
