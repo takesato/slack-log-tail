@@ -49,7 +49,7 @@ module Slack
 
         def message(data)
           return if data['hidden'] == true
-          #return if data['message'] == ''
+          return if data['message'] == ''
           return unless @times[data['channel']]
           time = Time.now.strftime("%H:%M:%S").bold
           channel = "##{@channels[data['channel']]}".to_s.ljust(22)[0..21].green
@@ -57,7 +57,7 @@ module Slack
           message =  data['text']
           sep = "|".green
           $stdout.puts "#{time} #{channel} #{user} #{sep} #{message}"
-          #$stdout.puts data
+          $stdout.puts data
         end
 
         def user_typing(data)
@@ -256,6 +256,9 @@ module Slack
         end
 
         def subteam_self_removed(data)
+        end
+
+        def subteam_updated(data)
         end
 
         def list_users
