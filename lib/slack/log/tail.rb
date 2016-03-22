@@ -34,7 +34,11 @@ module Slack
 
             ws.on :message do |event|
               data = JSON.parse(event.data)
-              send(data['type'], data)
+              if respond_to? data['type'].to_sym
+                send(data['type'], data)
+              else
+                $stderr.puts "not implements #{data['type']}"
+              end
             end
 
             ws.on :close do |event|
